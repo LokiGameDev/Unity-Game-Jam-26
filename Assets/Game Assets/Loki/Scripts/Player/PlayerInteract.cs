@@ -15,14 +15,12 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnEnable()
     {
-        if (inputReader != null)
-            inputReader.InteractEvent += HandleInteractInput;
+        inputReader.InteractEvent += HandleInteractInput;
     }
 
     private void OnDisable()
     {
-        if (inputReader != null)
-            inputReader.InteractEvent -= HandleInteractInput;
+        inputReader.InteractEvent -= HandleInteractInput;
     }
 
     private void Update()

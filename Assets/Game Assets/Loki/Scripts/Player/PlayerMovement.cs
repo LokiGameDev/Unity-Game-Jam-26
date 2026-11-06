@@ -17,12 +17,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 12f;
     [SerializeField] private float coyoteTime = 0.12f;
     [SerializeField] private float jumpBufferTime = 0.12f;
-    [SerializeField] private float jumpCutMultiplier = 0.5f;
 
     [Header("Gravity")]
     [SerializeField] private float fallMultiplier = 2.5f;
-    [SerializeField] private float lowJumpMultiplier = 2f;
-
     [Header("Ground Check")]
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayers;
@@ -37,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
     // Input
     private Vector2 moveInput;
-    private bool jumpHeld;
     private bool sprintHeld;
 
     // Ground
@@ -75,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
 
         inputReader.MoveEvent += HandleMoveInput;
         inputReader.JumpEvent += HandleJumpInput;
-        inputReader.JumpCanceledEvent += HandleJumpRelease;
         inputReader.SprintEvent += HandleSprintInput;
     }
 
@@ -86,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
 
         inputReader.MoveEvent -= HandleMoveInput;
         inputReader.JumpEvent -= HandleJumpInput;
-        inputReader.JumpCanceledEvent -= HandleJumpRelease;
         inputReader.SprintEvent -= HandleSprintInput;
     }
 
@@ -115,24 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJumpInput()
     {
-        jumpHeld = true;
         jumpBufferCounter = jumpBufferTime;
-    }
-
-    private void HandleJumpRelease()
-    {
-        jumpHeld = false;
-
-        // Shorten the jump if the player releases
-        // the jump button while moving upwards.
-
-        if (rb.linearVelocity.y > 0f)
-        {
-            rb.linearVelocity = new Vector2(
-                rb.linearVelocity.x,
-                rb.linearVelocity.y * jumpCutMultiplier
-            );
-        }
     }
 
     private void HandleSprintInput(bool pressed)
@@ -237,20 +214,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleBetterGravity()
     {
-        float gravityMultiplier = 1f;
-
         if (rb.linearVelocity.y < 0f)
         {
-            // Faster falling.
-            gravityMultiplier = fallMultiplier;
+            // Faster falling for a snappy jump.
+            rb.gravityScale = baseGravityScale * fallMultiplier;
         }
-        else if (rb.linearVelocity.y > 0f && !jumpHeld)
+        else
         {
-            // Shorter jump when released early.
-            gravityMultiplier = lowJumpMultiplier;
+            rb.gravityScale = baseGravityScale;
         }
-
-        rb.gravityScale = baseGravityScale * gravityMultiplier;
     }
 
     // ==========================================

@@ -12,7 +12,6 @@ public class InputReader : ScriptableObject, IPlayerActions
     // Input events
     public event Action<Vector2> MoveEvent;
     public event Action JumpEvent;
-    public event Action JumpCanceledEvent;
     public event Action<bool> SprintEvent;
     public event Action InteractEvent;
 
@@ -41,9 +40,6 @@ public class InputReader : ScriptableObject, IPlayerActions
     {
         if (context.started)
             JumpEvent?.Invoke();
-
-        if (context.canceled)
-            JumpCanceledEvent?.Invoke();
     }
 
     public void OnSprint(InputAction.CallbackContext context)
@@ -58,6 +54,8 @@ public class InputReader : ScriptableObject, IPlayerActions
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
+        {
             InteractEvent?.Invoke();
+        }
     }
 }
