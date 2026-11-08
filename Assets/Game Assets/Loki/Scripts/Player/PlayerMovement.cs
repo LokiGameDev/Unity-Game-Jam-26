@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private InputReader inputReader;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Animator playerAnimator;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
@@ -150,6 +151,8 @@ public class PlayerMovement : MonoBehaviour
             newSpeed,
             rb.linearVelocity.y
         );
+
+        playerAnimator.SetFloat("Speed", rb.linearVelocity.magnitude);
     }
 
     // ==========================================
@@ -206,6 +209,8 @@ public class PlayerMovement : MonoBehaviour
             Vector2.up * jumpForce,
             ForceMode2D.Impulse
         );
+
+        playerAnimator.SetTrigger("Jump");
     }
 
     // ==========================================
