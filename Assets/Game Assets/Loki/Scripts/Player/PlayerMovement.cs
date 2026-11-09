@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private InputReader inputReader;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private SpriteRenderer playerSprite;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
@@ -153,6 +154,15 @@ public class PlayerMovement : MonoBehaviour
         );
 
         playerAnimator.SetFloat("Speed", rb.linearVelocity.magnitude);
+
+        if (moveInput.x > 0)
+        {
+            playerSprite.flipX = false;
+        }
+        else if (moveInput.x < 0)
+        {
+            playerSprite.flipX = true;
+        }
     }
 
     // ==========================================
@@ -169,6 +179,8 @@ public class PlayerMovement : MonoBehaviour
             groundCheckRadius,
             groundLayers
         );
+
+        playerAnimator.SetBool("Grounded", isGrounded);
 
         if (isGrounded)
             coyoteCounter = coyoteTime;

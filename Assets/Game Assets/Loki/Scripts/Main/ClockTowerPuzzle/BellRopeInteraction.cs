@@ -13,6 +13,8 @@ public class BellRopeInteraction : MonoBehaviour, IInteractable
     [SerializeField] private BellMechanismPuzzle puzzle;
     [SerializeField] private RopeType ropeType;
 
+    public Transform interactingPoint { get ; set ; }
+
     // Call this from your interaction system
     public void Interact(GameObject interactor)
     {

@@ -1,5 +1,5 @@
-
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -10,6 +10,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private Transform interactionPoint;
     [SerializeField] private float interactionRadius = 1.2f;
     [SerializeField] private LayerMask interactableLayers;
+    [SerializeField] private Sprite interactionIcon;
 
     private IInteractable currentInteractable;
 
@@ -46,7 +47,10 @@ public class PlayerInteract : MonoBehaviour
                 hit.GetComponentInParent<IInteractable>();
 
             if (interactable == null)
+            {
+                UIManager.Instance.HideInteraction();
                 continue;
+            }
 
             float distance = Vector2.Distance(
                 interactionPoint.position,
@@ -58,6 +62,16 @@ public class PlayerInteract : MonoBehaviour
                 closestDistance = distance;
                 currentInteractable = interactable;
             }
+
+            if(currentInteractable!=null)
+            {
+                UIManager.Instance.ShowInteraction(hit.GetComponent<MonoBehaviour>(),currentInteractable.interactingPoint,interactionIcon);
+            }
+        }
+
+        if (currentInteractable == null)
+        {
+            UIManager.Instance.HideInteraction();
         }
     }
 

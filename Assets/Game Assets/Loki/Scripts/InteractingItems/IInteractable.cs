@@ -1,5 +1,8 @@
 
+using UnityEngine;
+
 public interface IInteractable
 {
-    void Interact(UnityEngine.GameObject interactor);
+    void Interact(GameObject interactor);
+    public Transform interactingPoint {get; set;}
 }

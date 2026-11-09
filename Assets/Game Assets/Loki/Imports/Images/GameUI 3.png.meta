@@ -5,6 +5,33 @@ TextureImporter:
   - first:
       213: -1534628986910685255
     second: GameUI 3_0
+  - first:
+      213: -2773200670584721909
+    second: GameUI 3_1
+  - first:
+      213: 1973929856389304745
+    second: GameUI 3_2
+  - first:
+      213: -7701916042797253613
+    second: GameUI 3_3
+  - first:
+      213: -4363957934037821085
+    second: GameUI 3_4
+  - first:
+      213: 5949979336296979957
+    second: GameUI 3_5
+  - first:
+      213: -7737571115712822924
+    second: GameUI 3_6
+  - first:
+      213: -4094277827916149632
+    second: GameUI 3_7
+  - first:
+      213: 697318036700650202
+    second: GameUI 3_8
+  - first:
+      213: -1270074535494068841
+    second: GameUI 3_9
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -129,10 +156,10 @@ TextureImporter:
       name: GameUI 3_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1672
-        height: 941
+        x: 30
+        y: 274
+        width: 560
+        height: 537
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,6 +170,204 @@ TextureImporter:
       bones: []
       spriteID: 9b7cb253117e3bae0800000000000000
       internalID: -1534628986910685255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 3_1
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 276
+        width: 433
+        height: 606
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0e2ce2eeac9389d0800000000000000
+      internalID: -2773200670584721909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 3_2
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 274
+        width: 609
+        height: 656
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a15f9dfebec46b10800000000000000
+      internalID: 1973929856389304745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 3_3
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 40
+        width: 335
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31cff236a2c4d1590800000000000000
+      internalID: -7701916042797253613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 3_4
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 40
+        width: 204
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3699de6516b1073c0800000000000000
+      internalID: -4363957934037821085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 3_5
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 37
+        width: 273
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fd55e89ea2929250800000000000000
+      internalID: 5949979336296979957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 3_6
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 39
+        width: 74
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4714d9fc010ae9490800000000000000
+      internalID: -7737571115712822924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 3_7
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 39
+        width: 143
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08ccc4702043e27c0800000000000000
+      internalID: -4094277827916149632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 3_8
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 39
+        width: 168
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adad3015f0f5da900800000000000000
+      internalID: 697318036700650202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 3_9
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 39
+        width: 175
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7955b9960f9cf5ee0800000000000000
+      internalID: -1270074535494068841
       vertices: []
       indices: 
       edges: []
@@ -162,6 +387,15 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       GameUI 3_0: -1534628986910685255
+      GameUI 3_1: -2773200670584721909
+      GameUI 3_2: 1973929856389304745
+      GameUI 3_3: -7701916042797253613
+      GameUI 3_4: -4363957934037821085
+      GameUI 3_5: 5949979336296979957
+      GameUI 3_6: -7737571115712822924
+      GameUI 3_7: -4094277827916149632
+      GameUI 3_8: 697318036700650202
+      GameUI 3_9: -1270074535494068841
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
 {
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpawnAreaPoints spawnArea;
+
+    [field: SerializeField] public Transform interactingPoint { get ; set ; }
+
     private bool isOpen;
 
     public void Interact(GameObject interactor)
@@ -17,8 +20,6 @@ public class Door : MonoBehaviour, IInteractable
 
     private void DoorOpened()
     {
-        Color color = spriteRenderer.color;
-        color.a = 0;
-        spriteRenderer.color = color;
+        UIManager.Instance.SceneSwapping(spawnArea);
     }
 }
