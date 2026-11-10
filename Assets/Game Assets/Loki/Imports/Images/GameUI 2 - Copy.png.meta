@@ -366,7 +366,7 @@ TextureImporter:
         width: 50
         height: 85
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -375,6 +375,28 @@ TextureImporter:
       bones: []
       spriteID: fd4ebc5acf7a0c8489278107965d657f
       internalID: 2123629526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI 2 - Copy_11
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 459
+        width: 132
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d397a3ae00e4c0247a94b2416f7a7e8d
+      internalID: -2037262708
       vertices: []
       indices: 
       edges: []
@@ -396,6 +418,7 @@ TextureImporter:
       GameUI 2 - Copy_0: -3810098511859591910
       GameUI 2 - Copy_1: 6182201386662975064
       GameUI 2 - Copy_10: 2123629526
+      GameUI 2 - Copy_11: -2037262708
       GameUI 2 - Copy_2: 4940646377100723803
       GameUI 2 - Copy_3: 6515260662428254352
       GameUI 2 - Copy_4: -1694292255594784253

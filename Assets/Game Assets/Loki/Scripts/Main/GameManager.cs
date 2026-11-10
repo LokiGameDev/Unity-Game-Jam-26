@@ -68,5 +68,12 @@ public enum SpawnAreaPoints
     HotelEntrance,
     HotelGroundFloor,
     HotelFirstFloor,
-    ClockTowerEntrance
+    ClockTowerEntrance,
+    ClockMakerRoomEntrance,
+    ClockMakerRoom,
+    MayorRoomEntrance,
+    MayorRoom,
+    PlayerRoomEntrance,
+    PlayerRoom,
+    ClockTowerInside
 }
