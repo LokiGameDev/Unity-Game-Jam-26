@@ -659,6 +659,116 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Game UI 6_24
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 1095
+        width: 149
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eaf93db39eb94c49823155544a5432d
+      internalID: 1009682068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game UI 6_25
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 460
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42d7543d20dc2f14a8d7846b630f9e86
+      internalID: -815999118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game UI 6_26
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 0
+        width: 334
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5838b46af1c11c04eac21d17a80bce0d
+      internalID: -1974316094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game UI 6_27
+      rect:
+        serializedVersion: 2
+        x: 1494
+        y: 159
+        width: 107
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7ee01bbce7d979428098005ca2cad22
+      internalID: 733470621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game UI 6_28
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 50
+        width: 94
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a77dc685570a3c47a2b832509ffd518
+      internalID: -721026389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -692,6 +802,11 @@ TextureImporter:
       Game UI 6_21: -1291745978
       Game UI 6_22: -1319303481
       Game UI 6_23: 2126764412
+      Game UI 6_24: 1009682068
+      Game UI 6_25: -815999118
+      Game UI 6_26: -1974316094
+      Game UI 6_27: 733470621
+      Game UI 6_28: -721026389
       Game UI 6_3: -1680997032
       Game UI 6_4: -1023879089
       Game UI 6_5: -1332417296

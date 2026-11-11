@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     private MonoBehaviour currentOwner;
 
     private Camera mainCamera;
+    
+    public bool isPanelOpen { get; private set; }
 
     private void Awake()
     {
@@ -154,5 +156,10 @@ public class UIManager : MonoBehaviour
 
         sceneTransitionCanvas.alpha = 0;
         sceneTransitionObject.SetActive(false);
+    }
+
+    public void SetPanelStatus(bool state)
+    {
+        isPanelOpen = state;
     }
 }

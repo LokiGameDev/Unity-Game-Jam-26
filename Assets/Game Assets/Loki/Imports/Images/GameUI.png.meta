@@ -201,7 +201,7 @@ TextureImporter:
         height: 62
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 32, y: 22, z: 32, w: 23}
       customData: 
       outline: []
       physicsShape: []
@@ -222,7 +222,7 @@ TextureImporter:
         width: 90
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,6 +231,50 @@ TextureImporter:
       bones: []
       spriteID: e597377cd9c26264e83b0f604929df04
       internalID: -767504823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_5
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 321
+        width: 70
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba3d3494b50ada048b6d738d7dd4c3af
+      internalID: -1371323781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_6
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 582
+        width: 72
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e09fe71b82c632498641d9ba82ea6a1
+      internalID: 1026567793
       vertices: []
       indices: 
       edges: []
@@ -258,6 +302,8 @@ TextureImporter:
       GameUI_2: -432507540
       GameUI_3: -750884786
       GameUI_4: -767504823
+      GameUI_5: -1371323781
+      GameUI_6: 1026567793
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

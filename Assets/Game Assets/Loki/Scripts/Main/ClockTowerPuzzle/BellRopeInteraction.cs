@@ -5,15 +5,15 @@ public class BellRopeInteraction : MonoBehaviour, IInteractable
 {
     public enum RopeType
     {
-        Tens,
-        Units
+        Hour,
+        Minute
     }
 
     [Header("Settings")]
     [SerializeField] private BellMechanismPuzzle puzzle;
     [SerializeField] private RopeType ropeType;
 
-    public Transform interactingPoint { get ; set ; }
+    [field:SerializeField] public Transform interactingPoint { get ; set ; }
 
     // Call this from your interaction system
     public void Interact(GameObject interactor)
@@ -24,13 +24,13 @@ public class BellRopeInteraction : MonoBehaviour, IInteractable
             return;
         }
 
-        if (ropeType == RopeType.Tens)
+        if (ropeType == RopeType.Hour)
         {
-            puzzle.PullTensBell();
+            puzzle.PullHoursBell();
         }
         else
         {
-            puzzle.PullUnitsBell();
+            puzzle.PullMinutesBell();
         }
     }
 }

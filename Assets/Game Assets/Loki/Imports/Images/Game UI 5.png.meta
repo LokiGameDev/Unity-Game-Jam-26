@@ -749,7 +749,7 @@ TextureImporter:
         width: 155
         height: 169
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -758,6 +758,28 @@ TextureImporter:
       bones: []
       spriteID: 36660dcddaab8854c8ae8f5e34f1290f
       internalID: 1947148949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game UI 5_28
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 182
+        width: 115
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aeb424b70f41aa49b1f82dce5e207ef
+      internalID: -1365982
       vertices: []
       indices: 
       edges: []
@@ -797,6 +819,7 @@ TextureImporter:
       Game UI 5_25: -615685724
       Game UI 5_26: 915241632
       Game UI 5_27: 1947148949
+      Game UI 5_28: -1365982
       Game UI 5_3: -1087320864503301559
       Game UI 5_4: -2838597433706086579
       Game UI 5_5: -4211077211794778487

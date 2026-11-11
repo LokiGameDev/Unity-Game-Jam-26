@@ -22,14 +22,25 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Gravity")]
     [SerializeField] private float fallMultiplier = 2.5f;
+
     [Header("Ground Check")]
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayers;
+
+    [Header("Slope Movement")]
+    [SerializeField] private float slopeCheckDistance = 0.35f;
+    [SerializeField] private float maxSlopeAngle = 50f;
 
     [Header("Sprint")]
     [SerializeField] private float sprintSpeedMultiplier = 1.7f;
     [SerializeField] private float sprintDuration = 2.5f;
     [SerializeField] private float sprintCooldown = 3f;
+
+    [Header("Stair Movement")]
+    private bool isInStairZone;
+    private float stairSpeed;
+
+    public bool IsInStairZone => isInStairZone;
 
     private Rigidbody2D rb;
     private float baseGravityScale;
@@ -43,6 +54,12 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteCounter;
     private float jumpBufferCounter;
 
+    // Slope
+    private bool isOnSlope;
+    private float slopeAngle;
+    private Vector2 slopeNormal = Vector2.up;
+    private Vector2 slopeTangent = Vector2.right;
+
     // Sprint
     private bool isSprinting;
     private bool sprintOnCooldown;
@@ -51,9 +68,9 @@ public class PlayerMovement : MonoBehaviour
     private float sprintTimer;
     private float sprintCooldownTimer;
 
-    // Public properties
     public bool IsGrounded => isGrounded;
     public bool IsSprinting => isSprinting;
+    public bool IsOnSlope => isOnSlope;
 
     public float SprintRemaining => sprintTimer;
     public float SprintCooldownRemaining => sprintCooldownTimer;
@@ -89,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         CheckGround();
+        CheckSlope();
+
         UpdateJumpBuffer();
         UpdateSprint();
     }
@@ -118,9 +137,6 @@ public class PlayerMovement : MonoBehaviour
     {
         sprintHeld = pressed;
 
-        // Player must release sprint before
-        // being allowed to sprint again.
-
         if (!pressed)
             sprintLockedUntilRelease = false;
     }
@@ -131,30 +147,85 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (isInStairZone)
+        {
+            // A/D controls horizontal movement.
+            // W/S controls vertical stair movement.
+
+            rb.linearVelocity = new Vector2(
+                moveInput.x * moveSpeed,
+                moveInput.y * stairSpeed
+            );
+
+            if (playerAnimator != null)
+            {
+                playerAnimator.SetFloat(
+                    "Speed",
+                    moveInput.magnitude
+                );
+            }
+
+            // Preserve sprite flipping.
+            if (moveInput.x > 0)
+                playerSprite.flipX = false;
+            else if (moveInput.x < 0)
+                playerSprite.flipX = true;
+
+            return;
+        }
+
         float targetSpeed = moveInput.x * moveSpeed;
 
         if (isSprinting)
             targetSpeed *= sprintSpeedMultiplier;
 
-        float currentSpeed = rb.linearVelocity.x;
+        // Slope movement
+        if (isGrounded && isOnSlope)
+        {
+            if (Mathf.Abs(moveInput.x) > 0.01f)
+            {
+                // Move along the slope instead of horizontally.
+                Vector2 slopeVelocity = slopeTangent * targetSpeed;
 
-        float rate = Mathf.Abs(moveInput.x) > 0.01f
-            ? acceleration
-            : deceleration;
+                rb.linearVelocity = slopeVelocity;
+            }
+            else
+            {
+                // Prevent sliding when standing still.
+                rb.linearVelocity = Vector2.zero;
+            }
+        }
+        else
+        {
+            // Normal horizontal movement
+            float currentSpeed = rb.linearVelocity.x;
 
-        float newSpeed = Mathf.MoveTowards(
-            currentSpeed,
-            targetSpeed,
-            rate * Time.fixedDeltaTime
-        );
+            float rate = Mathf.Abs(moveInput.x) > 0.01f
+                ? acceleration
+                : deceleration;
 
-        rb.linearVelocity = new Vector2(
-            newSpeed,
-            rb.linearVelocity.y
-        );
+            float newSpeed = Mathf.MoveTowards(
+                currentSpeed,
+                targetSpeed,
+                rate * Time.fixedDeltaTime
+            );
 
-        playerAnimator.SetFloat("Speed", rb.linearVelocity.magnitude);
+            rb.linearVelocity = new Vector2(
+                newSpeed,
+                rb.linearVelocity.y
+            );
+        }
 
+        // Animation
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetFloat(
+                "Speed",
+                rb.linearVelocity.magnitude
+            );
+        }
+
+        // Sprite direction
         if (moveInput.x > 0)
         {
             playerSprite.flipX = false;
@@ -174,18 +245,77 @@ public class PlayerMovement : MonoBehaviour
         if (groundCheck == null)
             return;
 
-        isGrounded = Physics2D.OverlapCircle(
+        bool overlapGround = Physics2D.OverlapCircle(
             groundCheck.position,
             groundCheckRadius,
             groundLayers
         );
 
-        playerAnimator.SetBool("Grounded", isGrounded);
+        // Also check ground using a raycast.
+        Vector2 origin = groundCheck.position + Vector3.up * 0.1f;
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            origin,
+            Vector2.down,
+            slopeCheckDistance,
+            groundLayers
+        );
+
+        isGrounded = overlapGround || hit.collider != null;
+
+        if (playerAnimator != null)
+            playerAnimator.SetBool("Grounded", isGrounded);
 
         if (isGrounded)
             coyoteCounter = coyoteTime;
         else
-            coyoteCounter -= Time.deltaTime;
+            coyoteCounter = Mathf.Max(
+                0f,
+                coyoteCounter - Time.deltaTime
+            );
+    }
+
+    // ==========================================
+    // SLOPE CHECK
+    // ==========================================
+
+    private void CheckSlope()
+    {
+        isOnSlope = false;
+        slopeAngle = 0f;
+
+        if (groundCheck == null || !isGrounded)
+            return;
+
+        Vector2 origin = groundCheck.position + Vector3.up * 0.1f;
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            origin,
+            Vector2.down,
+            slopeCheckDistance,
+            groundLayers
+        );
+
+        if (hit.collider == null)
+            return;
+
+        slopeNormal = hit.normal;
+
+        slopeAngle = Vector2.Angle(
+            slopeNormal,
+            Vector2.up
+        );
+
+        if (slopeAngle > 0.1f && slopeAngle <= maxSlopeAngle)
+        {
+            isOnSlope = true;
+
+            // Calculate the direction along the slope.
+            slopeTangent = new Vector2(
+                slopeNormal.y,
+                -slopeNormal.x
+            ).normalized;
+        }
     }
 
     // ==========================================
@@ -206,23 +336,23 @@ public class PlayerMovement : MonoBehaviour
         if (coyoteCounter <= 0f)
             return;
 
-        // Consume jump.
         jumpBufferCounter = 0f;
         coyoteCounter = 0f;
 
-        // Reset existing vertical velocity.
+        isOnSlope = false;
+
         rb.linearVelocity = new Vector2(
             rb.linearVelocity.x,
             0f
         );
 
-        // Apply instant jump force.
         rb.AddForce(
             Vector2.up * jumpForce,
             ForceMode2D.Impulse
         );
 
-        playerAnimator.SetTrigger("Jump");
+        if (playerAnimator != null)
+            playerAnimator.SetTrigger("Jump");
     }
 
     // ==========================================
@@ -231,9 +361,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleBetterGravity()
     {
-        if (rb.linearVelocity.y < 0f)
+        // Don't apply extra falling gravity while walking
+        // down a slope.
+        if (!isGrounded && rb.linearVelocity.y < 0f)
         {
-            // Faster falling for a snappy jump.
             rb.gravityScale = baseGravityScale * fallMultiplier;
         }
         else
@@ -248,7 +379,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateSprint()
     {
-        // Cooldown handling.
         if (sprintOnCooldown)
         {
             sprintCooldownTimer -= Time.deltaTime;
@@ -258,7 +388,6 @@ public class PlayerMovement : MonoBehaviour
                 sprintCooldownTimer = 0f;
                 sprintOnCooldown = false;
 
-                // Refill stamina.
                 sprintTimer = sprintDuration;
             }
 
@@ -266,7 +395,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        // Check whether sprint is allowed.
         isSprinting =
             sprintHeld &&
             sprintTimer > 0f &&
@@ -275,7 +403,6 @@ public class PlayerMovement : MonoBehaviour
         if (!isSprinting)
             return;
 
-        // Consume sprint stamina.
         sprintTimer -= Time.deltaTime;
 
         if (sprintTimer <= 0f)
@@ -292,8 +419,6 @@ public class PlayerMovement : MonoBehaviour
         sprintOnCooldown = true;
         sprintCooldownTimer = sprintCooldown;
 
-        // Prevent holding the button from
-        // automatically restarting sprint.
         sprintLockedUntilRelease = true;
     }
 
@@ -312,5 +437,29 @@ public class PlayerMovement : MonoBehaviour
             groundCheck.position,
             groundCheckRadius
         );
+
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawLine(
+            groundCheck.position + Vector3.up * 0.1f,
+            groundCheck.position + Vector3.down * slopeCheckDistance
+        );
+    }
+
+    public void EnterStairZone(float speed)
+    {
+        isInStairZone = true;
+        stairSpeed = speed;
+
+        rb.gravityScale = 0f;
+        rb.linearVelocity = Vector2.zero;
+    }
+
+    public void ExitStairZone()
+    {
+        isInStairZone = false;
+
+        rb.gravityScale = baseGravityScale;
+        rb.linearVelocity = Vector2.zero;
     }
 }

@@ -1,23 +1,31 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LuckyNumberMachine : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public Transform interactingPoint { get ; set ; }
+    [SerializeField] private TMP_InputField luckyNumberInputField;
+    [SerializeField] private LuckyNumberManager luckyNumberManager;
 
-    private bool isOpen;
+    public UnityEvent OnLuckyNumberConfirmEvent;
+    public UnityEvent OnInteractEvent;
 
     public void Interact(GameObject interactor)
     {
-        isOpen = !isOpen;
-
-        Debug.Log(isOpen ? "Door Opened" : "Door Closed");
-
-        if(isOpen) MachineStarted();
+        OnInteractEvent?.Invoke();
     }
 
-    private void MachineStarted()
+    public void ConfirmLuckyNumber()
     {
+        if(luckyNumberInputField.text == "")
+        {
+            return;
+        }
+
+        if(int.TryParse(luckyNumberInputField.text, out int result)) luckyNumberManager.SetLuckyNumber(result);
         
+        OnLuckyNumberConfirmEvent?.Invoke();
     }
 }
 

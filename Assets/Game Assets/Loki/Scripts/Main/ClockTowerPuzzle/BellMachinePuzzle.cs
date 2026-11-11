@@ -8,80 +8,93 @@ public class BellMechanismPuzzle : MonoBehaviour
     public UnityEvent<int, int> onCountChanged;
     public UnityEvent onSolved;
 
-    private int targetTens;
-    private int targetUnits;
+    private int targetHour;
+    private int targetMinute;
 
-    private int currentTens;
-    private int currentUnits;
+    private int currentHour;
+    private int currentMinute;
 
     private bool solved;
 
     private void Start()
     {
-        if (!LuckyNumberManager.Instance ||
-            !LuckyNumberManager.Instance.HasLuckyNumber)
+        if (!LuckyNumberManager.Instance || !LuckyNumberManager.Instance.HasLuckyNumber)
         {
             Debug.LogError("Lucky number has not been selected!");
             enabled = false;
             return;
         }
 
-        LuckyNumberManager.Instance.GetDigits(
-            out targetTens,
-            out targetUnits
-        );
+        LuckyNumberManager.Instance.GetDigits(out targetHour, out targetMinute);
 
         UpdateDisplay();
     }
 
-    public void PullTensBell()
+    public void PullHoursBell()
     {
-        if (solved || currentTens >= 9)
+        if (solved)
             return;
 
-        currentTens++;
+        if(currentHour >= 12)
+        {
+            currentHour = 0;
+        }
+        else
+        {
+            currentHour++;
+        }
 
         UpdateDisplay();
-        CheckSolution();
     }
 
-    public void PullUnitsBell()
+    public void PullMinutesBell()
     {
-        if (solved || currentUnits >= 9)
+        if (solved)
             return;
 
-        currentUnits++;
+        if(currentMinute >= 59)
+        {
+            PullHoursBell();
+            currentMinute = 0;
+        }
+        else
+        {
+            currentMinute++;
+        }
 
         UpdateDisplay();
-        CheckSolution();
     }
 
     private void UpdateDisplay()
     {
-        onCountChanged?.Invoke(currentTens, currentUnits);
+        onCountChanged?.Invoke(currentHour, currentMinute);
 
         Debug.Log("Bell count: " +
-                  currentTens + currentUnits);
+                  currentHour + currentMinute);
     }
 
-    private void CheckSolution()
+    public bool CheckSolution()
     {
-        if (currentTens == targetTens &&
-            currentUnits == targetUnits)
+        if (currentHour == targetHour &&
+            currentMinute == targetMinute)
         {
-            SolvePuzzle();
+            return SolvePuzzle();
         }
+
+        return false;
     }
 
-    private void SolvePuzzle()
+    private bool SolvePuzzle()
     {
         if (solved)
-            return;
+            return true;
 
         solved = true;
 
         Debug.Log("CLOCK TOWER PUZZLE SOLVED!");
         onSolved?.Invoke();
+
+        return true;
     }
 
     public void ResetPuzzle()
@@ -89,8 +102,8 @@ public class BellMechanismPuzzle : MonoBehaviour
         if (solved)
             return;
 
-        currentTens = 0;
-        currentUnits = 0;
+        currentHour = 0;
+        currentMinute = 0;
 
         UpdateDisplay();
     }

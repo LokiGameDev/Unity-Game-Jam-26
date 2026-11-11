@@ -24,7 +24,7 @@ public class LuckyNumberManager : MonoBehaviour
 
     public void SetLuckyNumber(int number)
     {
-        if (number < 1 || number > 99)
+        if (number < 0 || number > 720)
         {
             Debug.LogWarning("Lucky number must be between 1 and 99.");
             return;
@@ -36,9 +36,9 @@ public class LuckyNumberManager : MonoBehaviour
         Debug.Log("Lucky Number selected: " + LuckyNumber);
     }
 
-    public void GetDigits(out int tens, out int units)
+    public void GetDigits(out int hours, out int minutes)
     {
-        tens = LuckyNumber / 10;
-        units = LuckyNumber % 10;
+        hours = LuckyNumber / 10;
+        minutes = LuckyNumber % 10;
     }
 }
