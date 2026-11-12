@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,7 +36,6 @@ public class RecordDeskArea : MonoBehaviour
 
     [Header("Snap Settings")]
     [SerializeField] private float snapDistance = 60f;
-
     [SerializeField] private float stackOffset = 8f;
 
     [Header("Events")]
@@ -44,6 +44,7 @@ public class RecordDeskArea : MonoBehaviour
 
     private int targetTens;
     private int targetUnits;
+    private int targetNumber;
 
     private bool solved;
 
@@ -62,17 +63,29 @@ public class RecordDeskArea : MonoBehaviour
             out targetUnits
         );
 
+        targetNumber = targetTens * 10 + targetUnits;
+
         foreach (DeskSlot slot in slots)
         {
             slot.records = new List<DraggableRecord>();
             slot.currentTotal = 0;
         }
 
-        Debug.Log(
-            $"Required number: {targetTens}{targetUnits}"
-        );
+        Debug.Log($"Required number: {targetNumber}");
+
+        LuckyNumberManager.Instance.LuckyNumberSelected.AddListener(UpdateLuckyNumber);
 
         CheckPuzzleCompletion();
+    }
+
+    private void UpdateLuckyNumber()
+    {
+        LuckyNumberManager.Instance.GetDigits(
+            out targetTens,
+            out targetUnits
+        );
+
+        targetNumber = targetTens * 10 + targetUnits;
     }
 
     public void TryPlaceRecord(DraggableRecord record)
@@ -94,16 +107,6 @@ public class RecordDeskArea : MonoBehaviour
             if (slot.slotTransform == null)
                 continue;
 
-            int requiredDigit = GetRequiredDigit(slot.slotType);
-
-            // No records are needed for a zero digit.
-            if (requiredDigit == 0)
-                continue;
-
-            // Don't allow the total to exceed the required digit.
-            if (slot.currentTotal + record.Digit > requiredDigit)
-                continue;
-
             Vector2 slotPosition =
                 dragArea.InverseTransformPoint(
                     slot.slotTransform.position
@@ -122,9 +125,7 @@ public class RecordDeskArea : MonoBehaviour
         if (nearestSlot == null ||
             nearestDistance > snapDistance)
         {
-            Debug.Log(
-                $"Record {record.Digit} cannot be placed here."
-            );
+            Debug.Log($"Record {record.Digit} cannot be placed here.");
             return;
         }
 
@@ -135,17 +136,28 @@ public class RecordDeskArea : MonoBehaviour
         DraggableRecord record,
         DeskSlot slot)
     {
+        if (slot.records.Contains(record))
+            return;
+
         slot.records.Add(record);
 
-        slot.currentTotal += record.Digit;
+        // Calculate place value.
+        int multiplier = slot.slotType == SlotType.Tens ? 10 : 1;
+
+        slot.currentTotal += record.Digit * multiplier;
+
+        record.OnSnapped();
 
         UpdateStackPositions(slot);
 
+        int currentNumber = GetCurrentTotal();
+
         Debug.Log(
-            $"{slot.slotName}: {slot.currentTotal}"
+            $"{slot.slotName}: {slot.currentTotal} | Current Number: {currentNumber}"
         );
 
-        onCorrectRecordPlaced?.Invoke(GetCurrentTotal());
+        // Check the current number after every placement.
+        onCorrectRecordPlaced?.Invoke(currentNumber);
 
         CheckPuzzleCompletion();
     }
@@ -172,7 +184,6 @@ public class RecordDeskArea : MonoBehaviour
 
             recordRect.localPosition = stackPosition;
 
-            // Keep the top record visible.
             recordRect.SetAsLastSibling();
         }
     }
@@ -184,14 +195,9 @@ public class RecordDeskArea : MonoBehaviour
             if (!slot.records.Remove(record))
                 continue;
 
-            slot.currentTotal = 0;
+            record.OnDesnapped();
 
-            // Recalculate the total after removing the record.
-            foreach (DraggableRecord remaining in slot.records)
-            {
-                if (remaining != null)
-                    slot.currentTotal += remaining.Digit;
-            }
+            RecalculateSlotTotal(slot);
 
             UpdateStackPositions(slot);
 
@@ -199,26 +205,33 @@ public class RecordDeskArea : MonoBehaviour
                 $"Removed record. {slot.slotName}: {slot.currentTotal}"
             );
 
+            // Check again after removing a record.
+            CheckPuzzleCompletion();
+
             return;
         }
     }
 
-    private int GetRequiredDigit(SlotType type)
+    private void RecalculateSlotTotal(DeskSlot slot)
     {
-        return type == SlotType.Tens
-            ? targetTens
-            : targetUnits;
+        slot.currentTotal = 0;
+
+        int multiplier =
+            slot.slotType == SlotType.Tens ? 10 : 1;
+
+        foreach (DraggableRecord remaining in slot.records)
+        {
+            if (remaining != null)
+                slot.currentTotal += remaining.Digit * multiplier;
+        }
     }
 
     private void CheckPuzzleCompletion()
     {
-        foreach (DeskSlot slot in slots)
-        {
-            int requiredDigit = GetRequiredDigit(slot.slotType);
+        int currentNumber = GetCurrentTotal();
 
-            if (slot.currentTotal != requiredDigit)
-                return;
-        }
+        if (currentNumber != targetNumber)
+            return;
 
         if (solved)
             return;
@@ -226,6 +239,8 @@ public class RecordDeskArea : MonoBehaviour
         solved = true;
 
         Debug.Log("TOWN RECORDS PUZZLE SOLVED!");
+
+        UIManager.Instance.PuzzleCompleted();
 
         onPuzzleSolved?.Invoke();
     }
@@ -244,12 +259,12 @@ public class RecordDeskArea : MonoBehaviour
     private int GetCurrentTotal()
     {
         int total = 0;
+
         foreach (DeskSlot slot in slots)
         {
-            int requiredDigit = GetRequiredDigit(slot.slotType);
-
-            total += requiredDigit;
+            total += slot.currentTotal;
         }
+
         return total;
     }
 

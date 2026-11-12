@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 2608128823300037284}
   - component: {fileID: 275284074731395204}
   - component: {fileID: 2309322763247249704}
+  - component: {fileID: -1831759375617820342}
   m_Layer: 5
   m_Name: Gear
   m_TagString: Untagged
@@ -228,7 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60c604131e9b6e48ad31280e2daa589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gear
-  gearBalancePuzzle: {fileID: 0}
   gearValue: 1
   gearValueText: {fileID: 1420257050526386380}
 --- !u!114 &2309322763247249704
@@ -245,3 +245,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DraggableUIItem
   dragArea: {fileID: 0}
   puttingArea: {fileID: 0}
+  colorChangerForItems: {fileID: -1831759375617820342}
+--- !u!114 &-1831759375617820342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171727340668937906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5214c3eaf7ae944409a3762ecc7eb2a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorChangerForItems
+  image: {fileID: 2608128823300037284}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  snappedColor: {r: 0.35957614, g: 0.6603774, b: 0.31461376, a: 1}

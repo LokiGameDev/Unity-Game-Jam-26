@@ -9,8 +9,11 @@ public class Gear : MonoBehaviour
 
     public int GearValue { get => gearValue ;}
 
-    private void Start()
+    public void Initialize(int value)
     {
-        gearValueText.text = gearValue.ToString();
+        gearValue = value;
+
+        if (gearValueText != null)
+            gearValueText.text = value.ToString();
     }
 }

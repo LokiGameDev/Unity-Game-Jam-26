@@ -1,12 +1,15 @@
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LuckyNumberManager : MonoBehaviour
 {
     public static LuckyNumberManager Instance { get; private set; }
 
-    public int LuckyNumber { get; private set; }
-    public bool HasLuckyNumber { get; private set; }
+    public int LuckyNumber { get; private set; } = 7;
+    public bool HasLuckyNumber { get; private set; } = true;
+
+    public UnityEvent LuckyNumberSelected;
 
     private void Awake()
     {
@@ -18,8 +21,6 @@ public class LuckyNumberManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        SetLuckyNumber(7);
     }
 
     public void SetLuckyNumber(int number)
@@ -34,6 +35,10 @@ public class LuckyNumberManager : MonoBehaviour
         HasLuckyNumber = true;
 
         Debug.Log("Lucky Number selected: " + LuckyNumber);
+
+        LuckyNumberSelected?.Invoke();
+
+        GameManager.Instance.LuckyNumberSelected();
     }
 
     public void GetDigits(out int hours, out int minutes)

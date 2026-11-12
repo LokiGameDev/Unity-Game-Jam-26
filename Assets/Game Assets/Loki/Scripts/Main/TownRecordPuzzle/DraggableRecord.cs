@@ -9,13 +9,13 @@ public class DraggableRecord : MonoBehaviour,
     IEndDragHandler
 {
     [Header("Record Settings")]
-    [SerializeField, Range(1, 99)]
     private int digit = 1;
 
     [Header("References")]
     [SerializeField] private RectTransform dragArea;
     [SerializeField] private RecordDeskArea deskArea;
     [SerializeField] private TMP_Text recordValueText;
+    [SerializeField] private ColorChangerForItems colorChangerForItems;
 
     public int Digit => digit;
 
@@ -23,20 +23,31 @@ public class DraggableRecord : MonoBehaviour,
     private Vector3 dragOffset;
     private bool isDragging;
 
+    public void Initialize(int value, RectTransform area, RecordDeskArea area1)
+    {
+        digit = value;
+
+        if (recordValueText != null)
+            recordValueText.text = value.ToString();
+            
+        dragArea = area;
+        deskArea = area1;
+    }
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
 
         if (dragArea == null || deskArea == null)
         {
-            Debug.LogError($"{name}: Missing references!");
+            Debug.Log($"{name}: Missing references!");
             enabled = false;
             return;
         }
 
         if (rectTransform.parent != dragArea)
         {
-            Debug.LogError(
+            Debug.Log(
                 $"{name} must be a direct child of DragArea."
             );
         }
@@ -120,5 +131,15 @@ public class DraggableRecord : MonoBehaviour,
         position.y = Mathf.Clamp(position.y, minY, maxY);
 
         return position;
+    }
+
+    public void OnSnapped()
+    {
+        colorChangerForItems.SetSnapStateColor(true);
+    }
+
+    public void OnDesnapped()
+    {
+        colorChangerForItems.SetSnapStateColor(false);
     }
 }

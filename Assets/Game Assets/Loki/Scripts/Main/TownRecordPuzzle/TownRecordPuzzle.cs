@@ -97,7 +97,7 @@ public class TownRecordsPuzzle : MonoBehaviour
 
     public void CurrentValueUpdate(int value)
     {
-        currentRecordValue.text = $"value";
+        currentRecordValue.text = $"{value}";
     }
 
     public void SolveThePuzzle()

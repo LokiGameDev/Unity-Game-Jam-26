@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
 
     private GameObject player;
 
+    [SerializeField] private GameObject[] setOnLucky;
+
+    public bool IsLuckyNumberSelected { get; private set; } = false;
+
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -49,6 +53,8 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
 
         TeleportPlayerToArea(playerSpawnPoint);
+
+        Array.ForEach(setOnLucky, obj => obj.SetActive(false));
     }
 
     public void TeleportPlayerToArea(SpawnAreaPoints spawnArea)
@@ -78,8 +84,16 @@ public class GameManager : MonoBehaviour
             if(item.PuzzleType == puzzleType)
             {
                 item.SolvedStatus = true;
+                UIManager.Instance.PuzzleCompleted();
             }
         }
+    }
+
+    public void LuckyNumberSelected()
+    {
+        IsLuckyNumberSelected = true;
+
+        Array.ForEach(setOnLucky, obj => obj.SetActive(true));
     }
 }
 

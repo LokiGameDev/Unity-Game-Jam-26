@@ -10,11 +10,18 @@ public class DraggableUIItem : MonoBehaviour,
     [Header("References")]
     [SerializeField] private RectTransform dragArea;
     [SerializeField] private GearPuttingArea puttingArea;
+    [SerializeField] private ColorChangerForItems colorChangerForItems;
 
     private RectTransform rectTransform;
 
     private Vector3 dragOffset;
     private bool isDragging;
+
+    public void Initialize(RectTransform area, GearPuttingArea area1)
+    {
+        dragArea = area;
+        puttingArea = area1;
+    }
 
     private void Awake()
     {
@@ -22,14 +29,14 @@ public class DraggableUIItem : MonoBehaviour,
 
         if (dragArea == null || puttingArea == null)
         {
-            Debug.LogError($"{name}: Missing drag references!");
+            Debug.Log($"{name}: Missing drag references!");
         }
 
         // This script expects the gear to be a direct child
         // of the drag area.
         if (rectTransform.parent != dragArea)
         {
-            Debug.LogError(
+            Debug.Log(
                 $"{name} must be a direct child of Drag Area!"
             );
         }
@@ -116,5 +123,15 @@ public class DraggableUIItem : MonoBehaviour,
         position.y = Mathf.Clamp(position.y, minY, maxY);
 
         return position;
+    }
+
+    public void OnSnapped()
+    {
+        colorChangerForItems.SetSnapStateColor(true);
+    }
+
+    public void OnDesnapped()
+    {
+        colorChangerForItems.SetSnapStateColor(false);
     }
 }

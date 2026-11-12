@@ -81,6 +81,8 @@ public class GearPuttingArea : MonoBehaviour
         Vector3 localPosition =
             dragArea.InverseTransformPoint(pivot.position);
 
+        gear.OnSnapped();
+
         gearRect.localPosition = localPosition;
 
         // Reserve this pivot.
@@ -113,6 +115,8 @@ public class GearPuttingArea : MonoBehaviour
             Debug.Log($"Released pivot: {occupiedPivot.name}");
 
             puzzle.RemoveGear(gear.gameObject.GetComponent<Gear>().GearValue);
+
+            gear.OnDesnapped();
         }
     }
 

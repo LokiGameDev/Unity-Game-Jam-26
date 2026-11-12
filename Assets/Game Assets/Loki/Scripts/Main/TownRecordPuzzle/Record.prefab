@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 3149402278248404385}
   - component: {fileID: 1890233625093836940}
   - component: {fileID: 1903553084453419456}
+  - component: {fileID: 2252988704858160020}
   m_Layer: 5
   m_Name: Record
   m_TagString: Untagged
@@ -228,7 +229,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51999c6e55278640bd6f5b812aa0ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableRecord
-  digit: 1
   dragArea: {fileID: 0}
   deskArea: {fileID: 0}
   recordValueText: {fileID: 4452083357498848841}
+  colorChangerForItems: {fileID: 2252988704858160020}
+--- !u!114 &2252988704858160020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8321593961915041543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5214c3eaf7ae944409a3762ecc7eb2a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorChangerForItems
+  image: {fileID: 1890233625093836940}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  snappedColor: {r: 0.38527945, g: 0.735849, b: 0.4174419, a: 1}

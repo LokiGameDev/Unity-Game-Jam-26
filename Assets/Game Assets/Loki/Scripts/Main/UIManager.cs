@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject sceneTransitionObject;
     [SerializeField] private CanvasGroup sceneTransitionCanvas;
 
+    [SerializeField] private GameObject puzzleCompletedObject;
+
     private Transform currentShowPoint;
     private MonoBehaviour currentOwner;
 
@@ -41,6 +43,7 @@ public class UIManager : MonoBehaviour
     {
         sceneTransitionObject.SetActive(false);
         sceneTransitionCanvas.alpha = 0;
+        puzzleCompletedObject.SetActive(false);
     }
 
     private void LateUpdate()
@@ -161,5 +164,10 @@ public class UIManager : MonoBehaviour
     public void SetPanelStatus(bool state)
     {
         isPanelOpen = state;
+    }
+
+    public void PuzzleCompleted()
+    {
+        puzzleCompletedObject.SetActive(true);
     }
 }
