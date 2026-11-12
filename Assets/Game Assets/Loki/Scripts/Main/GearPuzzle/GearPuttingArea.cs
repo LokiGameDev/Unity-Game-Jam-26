@@ -9,6 +9,7 @@ public class GearPuttingArea : MonoBehaviour
     [SerializeField] private RectTransform dragArea;
 
     [SerializeField] private RectTransform[] pivotPoints;
+    [SerializeField] private GearBalancePuzzle puzzle;
 
     [Header("Snap Settings")]
     [SerializeField] private float snapDistance = 60f;
@@ -85,6 +86,8 @@ public class GearPuttingArea : MonoBehaviour
         // Reserve this pivot.
         occupiedPivots[pivot] = gear;
 
+        puzzle.AddGear(gear.gameObject.GetComponent<Gear>().GearValue);
+
         Debug.Log($"Gear snapped to {pivot.name}");
 
         onGearSnapped?.Invoke();
@@ -108,6 +111,8 @@ public class GearPuttingArea : MonoBehaviour
             occupiedPivots.Remove(occupiedPivot);
 
             Debug.Log($"Released pivot: {occupiedPivot.name}");
+
+            puzzle.RemoveGear(gear.gameObject.GetComponent<Gear>().GearValue);
         }
     }
 

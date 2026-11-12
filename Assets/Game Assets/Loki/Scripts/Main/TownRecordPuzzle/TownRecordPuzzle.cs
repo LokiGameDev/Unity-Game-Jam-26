@@ -1,4 +1,5 @@
 
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,8 @@ public class TownRecordsPuzzle : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent onSolved;
+    public UnityEvent<PuzzleType> onSolvedType;
+    [SerializeField] private TMP_Text currentRecordValue;
 
     private int targetTens;
     private int targetUnits;
@@ -55,6 +58,8 @@ public class TownRecordsPuzzle : MonoBehaviour
         Debug.Log("Tens: " + placedTens +
                   " | Units: " + placedUnits);
 
+        currentRecordValue.text = $"{placedTens}{placedUnits}";
+
         CheckSolution();
     }
 
@@ -76,6 +81,7 @@ public class TownRecordsPuzzle : MonoBehaviour
 
         Debug.Log("TOWN RECORDS PUZZLE SOLVED!");
         onSolved?.Invoke();
+        onSolvedType?.Invoke(PuzzleType.MayorRecord);
     }
 
     public void RemoveRecord(RecordSlot slot)
@@ -87,5 +93,15 @@ public class TownRecordsPuzzle : MonoBehaviour
             placedTens = -1;
         else
             placedUnits = -1;
+    }
+
+    public void CurrentValueUpdate(int value)
+    {
+        currentRecordValue.text = $"value";
+    }
+
+    public void SolveThePuzzle()
+    {
+        SolvePuzzle();
     }
 }

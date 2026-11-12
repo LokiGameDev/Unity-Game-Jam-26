@@ -1,11 +1,14 @@
 using System;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private SpawnPoint[] spawnPositions;
     [SerializeField] private CinemachineConfiner2D cinemachineConfiner;
+    [SerializeField] private SpawnAreaPoints playerSpawnPoint = SpawnAreaPoints.VillageEntrance;
+    [SerializeField] private PuzzleStatus[] puzzleStatuses;
 
     private GameObject player;
 
@@ -30,6 +33,13 @@ public class GameManager : MonoBehaviour
         public BoxCollider2D collider;
     }
 
+    [Serializable]
+    public class PuzzleStatus
+    {
+        public PuzzleType PuzzleType;
+        public bool SolvedStatus = false;
+    }
+
     private void Awake()
     {
         if(instance == null) instance = this;
@@ -38,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.Find("Player");
 
-        TeleportPlayerToArea(0);
+        TeleportPlayerToArea(playerSpawnPoint);
     }
 
     public void TeleportPlayerToArea(SpawnAreaPoints spawnArea)
@@ -60,7 +70,20 @@ public class GameManager : MonoBehaviour
         }
         return null;
     }
+
+    public void SolvedPuzzle(PuzzleType puzzleType)
+    {
+        foreach(var item in puzzleStatuses)
+        {
+            if(item.PuzzleType == puzzleType)
+            {
+                item.SolvedStatus = true;
+            }
+        }
+    }
 }
+
+public enum PuzzleType { GearBalance, MayorRecord, ClockTower}
 
 public enum SpawnAreaPoints
 {

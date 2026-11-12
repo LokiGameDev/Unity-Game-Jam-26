@@ -39,7 +39,7 @@ public class RecordDeskArea : MonoBehaviour
     [SerializeField] private float stackOffset = 8f;
 
     [Header("Events")]
-    public UnityEvent onCorrectRecordPlaced;
+    public UnityEvent<int> onCorrectRecordPlaced;
     public UnityEvent onPuzzleSolved;
 
     private int targetTens;
@@ -145,7 +145,7 @@ public class RecordDeskArea : MonoBehaviour
             $"{slot.slotName}: {slot.currentTotal}"
         );
 
-        onCorrectRecordPlaced?.Invoke();
+        onCorrectRecordPlaced?.Invoke(GetCurrentTotal());
 
         CheckPuzzleCompletion();
     }
@@ -239,6 +239,18 @@ public class RecordDeskArea : MonoBehaviour
         }
 
         return 0;
+    }
+
+    private int GetCurrentTotal()
+    {
+        int total = 0;
+        foreach (DeskSlot slot in slots)
+        {
+            int requiredDigit = GetRequiredDigit(slot.slotType);
+
+            total += requiredDigit;
+        }
+        return total;
     }
 
     public bool IsSolved()

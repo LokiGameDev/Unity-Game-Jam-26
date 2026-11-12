@@ -9,7 +9,7 @@ public class DraggableRecord : MonoBehaviour,
     IEndDragHandler
 {
     [Header("Record Settings")]
-    [SerializeField, Range(1, 9)]
+    [SerializeField, Range(1, 99)]
     private int digit = 1;
 
     [Header("References")]

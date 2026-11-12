@@ -24,6 +24,12 @@ public class LuckyNumberMachine : MonoBehaviour, IInteractable
         }
 
         if(int.TryParse(luckyNumberInputField.text, out int result)) luckyNumberManager.SetLuckyNumber(result);
+
+        if(result < 0 || result > 719)
+        {
+            luckyNumberInputField.text = "";
+            return;
+        }
         
         OnLuckyNumberConfirmEvent?.Invoke();
     }
