@@ -26,7 +26,9 @@ public class BellMechanismPuzzle : MonoBehaviour
 
     public void LuckySelected()
     {
-        LuckyNumberManager.Instance.GetDigits(out targetHour, out targetMinute);
+        LuckyNumberManager.Instance.GetDigitsInTime(out targetHour, out targetMinute);
+
+        Debug.Log($"Target Time: {targetHour}:{targetMinute}");
 
         UpdateDisplay();
     }
@@ -69,9 +71,6 @@ public class BellMechanismPuzzle : MonoBehaviour
     private void UpdateDisplay()
     {
         onCountChanged?.Invoke(currentHour, currentMinute);
-
-        Debug.Log("Bell count: " +
-                  currentHour + currentMinute);
     }
 
     public bool CheckSolution()

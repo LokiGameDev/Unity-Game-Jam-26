@@ -46,4 +46,10 @@ public class LuckyNumberManager : MonoBehaviour
         hours = LuckyNumber / 10;
         minutes = LuckyNumber % 10;
     }
+
+    public void GetDigitsInTime(out int hours, out int minutes)
+    {
+        hours = LuckyNumber / 60;
+        minutes = LuckyNumber % 60;
+    }
 }

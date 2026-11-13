@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SpawnAreaPoints playerSpawnPoint = SpawnAreaPoints.VillageEntrance;
     [SerializeField] private PuzzleStatus[] puzzleStatuses;
 
+    [SerializeField] private StoryEventData mayorEndData;
+
     private GameObject player;
 
     [SerializeField] private GameObject[] setOnLucky;
@@ -98,14 +100,21 @@ public class GameManager : MonoBehaviour
         Array.ForEach(setOnLucky, obj => obj.SetActive(true));
     }
 
-    public void StoryCompleted()
+    public void TriggerTheEndPart()
+    {
+        StoryManager.Instance.StartStoryEvent(mayorEndData);
+
+        StoryManager.Instance.onStoryEventCompleted.AddListener(StoryCompleted);
+    }
+
+    public void StoryCompleted(string msg)
     {
         StartCoroutine(EndTheStory());
     }
 
     private IEnumerator EndTheStory()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(3);
     }
 }

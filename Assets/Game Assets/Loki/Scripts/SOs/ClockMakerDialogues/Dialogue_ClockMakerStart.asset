@@ -38,6 +38,12 @@ MonoBehaviour:
     text: I need a set of gears to be made for the mayor with some value
   - speakerName: Clock Maker
     portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: I forgot the final value. Try some combinations
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: Who knows. You might get lucky with your number
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
     text: If you can collect it from my table you can go and give it to the mayor
   - speakerName: Clock Maker
     portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}

@@ -5,6 +5,8 @@ public class MenuManager : MonoBehaviour
 {
     public void StartGame()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(1);
     }
 

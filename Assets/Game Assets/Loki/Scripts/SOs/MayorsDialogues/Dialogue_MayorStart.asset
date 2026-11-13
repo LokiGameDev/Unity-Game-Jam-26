@@ -47,4 +47,7 @@ MonoBehaviour:
     text: You just need to arrange some records with some value in the box
   - speakerName: Mayor
     portrait: {fileID: 424516655, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: You know the final might be your lucky number. Hahaha
+  - speakerName: Mayor
+    portrait: {fileID: 424516655, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
     text: After this you can go to the tower and visit it
