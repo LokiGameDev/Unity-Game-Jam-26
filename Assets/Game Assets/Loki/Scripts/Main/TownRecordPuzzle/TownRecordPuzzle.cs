@@ -26,20 +26,17 @@ public class TownRecordsPuzzle : MonoBehaviour
 
     private void Start()
     {
-        if (!LuckyNumberManager.Instance ||
-            !LuckyNumberManager.Instance.HasLuckyNumber)
+        if (LuckyNumberManager.Instance)
         {
-            Debug.LogError("Lucky number has not been selected!");
-            enabled = false;
-            return;
+            LuckyNumberManager.Instance.LuckyNumberSelected.AddListener(LuckySelected);
         }
-
-        LuckyNumberManager.Instance.GetDigits(
-            out targetTens,
-            out targetUnits
-        );
     }
 
+    public void LuckySelected()
+    {
+        LuckyNumberManager.Instance.GetDigits(out targetTens, out targetUnits);
+    }
+    
     // Call this when the player places a record.
     public void PlaceRecord(int digit, RecordSlot slot)
     {

@@ -38,4 +38,16 @@ public class GearRotator : MonoBehaviour
             prevMinute = minute;
         }
     }
+
+    public void RotateAll()
+    {
+        foreach(var gear in hourGears)
+        {
+            gear.RotateInfinite();
+        }
+        foreach(var gear in minuteGears)
+        {
+            gear.RotateInfinite();
+        }
+    }
 }

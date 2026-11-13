@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275091b99b7eacd40a40ec48225b80b7, type: 3}
+  m_Name: Dialogue_ClockMakerStart
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueID: 200
+  lines:
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: Hello there! Welcome to our town
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: I am this town's last clock maker
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: Long ago the clock tower in our town got broker down
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: After that the makers in our town got so many loss and all left
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: I am still hoping someday I can fix that tower and make this town alive
+      again
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: And by the way, can you help me with something
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: I need a set of gears to be made for the mayor with some value
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: If you can collect it from my table you can go and give it to the mayor
+  - speakerName: Clock Maker
+    portrait: {fileID: 888505469, guid: ec375931c4f9874488351aac5b5cbf1c, type: 3}
+    text: You can use this chance to meet him

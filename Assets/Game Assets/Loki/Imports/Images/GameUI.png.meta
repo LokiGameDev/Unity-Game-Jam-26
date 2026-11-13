@@ -279,6 +279,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: GameUI_7
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 206
+        width: 57
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3453e984bf8e6b644b52b3e763d7960b
+      internalID: -1471526450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -304,6 +326,7 @@ TextureImporter:
       GameUI_4: -767504823
       GameUI_5: -1371323781
       GameUI_6: 1026567793
+      GameUI_7: -1471526450
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95315db9798b4154daacc9f14fd82278, type: 3}
+  m_Name: StoryEvent_MeetingOthers
+  m_EditorClassIdentifier: Assembly-CSharp::StoryEventData
+  eventID: 1
+  objectiveToCompleteID: 
+  dialogue: {fileID: 11400000, guid: 6ccbc3f69d5e7f342832930a224accf8, type: 2}
+  objectiveToSet: {fileID: 11400000, guid: f71d604d9caee954da566dd74da05fc2, type: 2}
+  nextEvent: {fileID: 0}
+  autoStartNextEvent: 0

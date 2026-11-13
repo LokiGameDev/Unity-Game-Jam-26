@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -94,6 +96,17 @@ public class GameManager : MonoBehaviour
         IsLuckyNumberSelected = true;
 
         Array.ForEach(setOnLucky, obj => obj.SetActive(true));
+    }
+
+    public void StoryCompleted()
+    {
+        StartCoroutine(EndTheStory());
+    }
+
+    private IEnumerator EndTheStory()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(3);
     }
 }
 

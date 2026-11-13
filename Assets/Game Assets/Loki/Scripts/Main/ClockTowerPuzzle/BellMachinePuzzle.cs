@@ -18,13 +18,14 @@ public class BellMechanismPuzzle : MonoBehaviour
 
     private void Start()
     {
-        if (!LuckyNumberManager.Instance || !LuckyNumberManager.Instance.HasLuckyNumber)
+        if (LuckyNumberManager.Instance)
         {
-            Debug.LogError("Lucky number has not been selected!");
-            enabled = false;
-            return;
+            LuckyNumberManager.Instance.LuckyNumberSelected.AddListener(LuckySelected);
         }
+    }
 
+    public void LuckySelected()
+    {
         LuckyNumberManager.Instance.GetDigits(out targetHour, out targetMinute);
 
         UpdateDisplay();

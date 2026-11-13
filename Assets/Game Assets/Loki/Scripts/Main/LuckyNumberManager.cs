@@ -7,7 +7,7 @@ public class LuckyNumberManager : MonoBehaviour
     public static LuckyNumberManager Instance { get; private set; }
 
     public int LuckyNumber { get; private set; } = 7;
-    public bool HasLuckyNumber { get; private set; } = true;
+    public bool HasLuckyNumber { get; private set; } = false;
 
     public UnityEvent LuckyNumberSelected;
 

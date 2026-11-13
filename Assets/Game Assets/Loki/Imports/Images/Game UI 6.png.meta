@@ -712,7 +712,7 @@ TextureImporter:
         width: 334
         height: 359
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -734,7 +734,7 @@ TextureImporter:
         width: 107
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -756,7 +756,7 @@ TextureImporter:
         width: 94
         height: 74
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -765,6 +765,28 @@ TextureImporter:
       bones: []
       spriteID: 9a77dc685570a3c47a2b832509ffd518
       internalID: -721026389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game UI 6_29
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 10
+        width: 499
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fbcdab89c01f3c44ab486f4f76cf084
+      internalID: 451347288
       vertices: []
       indices: 
       edges: []
@@ -807,6 +829,7 @@ TextureImporter:
       Game UI 6_26: -1974316094
       Game UI 6_27: 733470621
       Game UI 6_28: -721026389
+      Game UI 6_29: 451347288
       Game UI 6_3: -1680997032
       Game UI 6_4: -1023879089
       Game UI 6_5: -1332417296

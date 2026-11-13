@@ -19,19 +19,6 @@ public class GearBalancePuzzle : MonoBehaviour
     private int currentValue;
     private bool solved;
 
-    private void Start()
-    {
-        if (!LuckyNumberManager.Instance ||
-            !LuckyNumberManager.Instance.HasLuckyNumber)
-        {
-            Debug.LogError("Lucky number has not been selected!");
-            enabled = false;
-            return;
-        }
-
-        UpdateValue();
-    }
-
     // Connect this to each gear's interaction/button.
     public void AddGear(int gearValue)
     {

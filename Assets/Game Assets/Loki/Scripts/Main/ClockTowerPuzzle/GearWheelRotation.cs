@@ -34,6 +34,11 @@ public class GearWheelRotation : MonoBehaviour
         coroutine = StartCoroutine(StopRotating());
     }
 
+    public void RotateInfinite()
+    {
+        isRotating = true;
+    }
+
     private IEnumerator StopRotating()
     {
         yield return new WaitForSeconds(1);
