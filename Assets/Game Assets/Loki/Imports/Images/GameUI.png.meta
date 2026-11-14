@@ -288,7 +288,7 @@ TextureImporter:
         width: 57
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -297,6 +297,28 @@ TextureImporter:
       bones: []
       spriteID: 3453e984bf8e6b644b52b3e763d7960b
       internalID: -1471526450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_8
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 582
+        width: 73
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: badde2048495be14b9672eec64777efc
+      internalID: 559443686
       vertices: []
       indices: 
       edges: []
@@ -327,6 +349,7 @@ TextureImporter:
       GameUI_5: -1371323781
       GameUI_6: 1026567793
       GameUI_7: -1471526450
+      GameUI_8: 559443686
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
