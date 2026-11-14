@@ -80,6 +80,7 @@ public class PlayerInteract : MonoBehaviour
         if (currentInteractable == null)
             return;
 
+        AudioManager.Instance.PlaySFX(AudioID.Interaction);
         currentInteractable.Interact(gameObject);
     }
 

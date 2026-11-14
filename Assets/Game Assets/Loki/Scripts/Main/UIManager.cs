@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     private MonoBehaviour currentOwner;
 
     private Camera mainCamera;
+
+    private Coroutine coroutine;
     
     public bool isPanelOpen { get; private set; }
 
@@ -117,7 +119,9 @@ public class UIManager : MonoBehaviour
 
     public void SceneSwapping(SpawnAreaPoints spawnPoint)
     {
-        StartCoroutine(SceneTransition(spawnPoint));
+        if(coroutine!=null) StopCoroutine(coroutine);
+
+        coroutine = StartCoroutine(SceneTransition(spawnPoint));
     }
 
     private IEnumerator SceneTransition(SpawnAreaPoints spawnPoint)

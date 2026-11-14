@@ -4,7 +4,7 @@ using UnityEngine;
 public class AudioEntry : ScriptableObject
 {
     [Header("Identity")]
-    [SerializeField] private string audioID;
+    [SerializeField] private AudioID audioID;
     [SerializeField] private AudioCategory category;
 
     [Header("Clips")]
@@ -26,7 +26,7 @@ public class AudioEntry : ScriptableObject
     [SerializeField, Min(0f)] private float minDistance = 1f;
     [SerializeField, Min(0f)] private float maxDistance = 25f;
 
-    public string AudioID => audioID;
+    public string AudioID => audioID.ToString();
     public AudioCategory Category => category;
     public bool Loop => loop;
     public float Volume => volume;
@@ -55,9 +55,6 @@ public class AudioEntry : ScriptableObject
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        if (!string.IsNullOrWhiteSpace(audioID))
-            audioID = audioID.Trim();
-
         minDistance = Mathf.Max(0f, minDistance);
         maxDistance = Mathf.Max(minDistance, maxDistance);
         minPitch = Mathf.Max(0.01f, minPitch);

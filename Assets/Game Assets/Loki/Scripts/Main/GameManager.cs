@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PuzzleStatus[] puzzleStatuses;
 
     [SerializeField] private StoryEventData mayorEndData;
+    [SerializeField] private StoryEventData playerEndData;
+
+    [SerializeField] private GameObject endStoryObject;
 
     private GameObject player;
 
@@ -101,6 +104,18 @@ public class GameManager : MonoBehaviour
     }
 
     public void TriggerTheEndPart()
+    {
+        StoryManager.Instance.StartStoryEvent(playerEndData);
+
+        StoryManager.Instance.onStoryEventCompleted.AddListener(ShowLetterAnimation);
+    }
+
+    private void ShowLetterAnimation(string msg)
+    {
+        endStoryObject.SetActive(true);
+    }
+
+    public void StartTheMayorEnd()
     {
         StoryManager.Instance.StartStoryEvent(mayorEndData);
 

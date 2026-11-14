@@ -72,6 +72,8 @@ public class LevelCompletionEffect : MonoBehaviour
         if (animationCoroutine != null)
             StopCoroutine(animationCoroutine);
 
+        AudioManager.Instance.PlaySFX(AudioID.PuzzleCompletion);
+
         animationCoroutine = StartCoroutine(PlayAnimation());
     }
 

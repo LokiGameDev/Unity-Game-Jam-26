@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275091b99b7eacd40a40ec48225b80b7, type: 3}
+  m_Name: Dialogue_Player
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueID: 400
+  lines:
+  - speakerName: You
+    portrait: {fileID: 173340419, guid: 8d3e5eb7c838a9f47b11e8aadc7de41b, type: 3}
+    text: Wait! what is this machine? Looks weird
+  - speakerName: You
+    portrait: {fileID: 173340419, guid: 8d3e5eb7c838a9f47b11e8aadc7de41b, type: 3}
+    text: There is a instruction written here
+  - speakerName: You
+    portrait: {fileID: 173340419, guid: 8d3e5eb7c838a9f47b11e8aadc7de41b, type: 3}
+    text: '"You can send objects to the past with this tower". Wait really?'
+  - speakerName: You
+    portrait: {fileID: 173340419, guid: 8d3e5eb7c838a9f47b11e8aadc7de41b, type: 3}
+    text: Oh. I need to test this now. I only have the letter I received
+  - speakerName: You
+    portrait: {fileID: 173340419, guid: 8d3e5eb7c838a9f47b11e8aadc7de41b, type: 3}
+    text: Wait Am I the One who sent this letter to me?
+  - speakerName: You
+    portrait: {fileID: 173340419, guid: 8d3e5eb7c838a9f47b11e8aadc7de41b, type: 3}
+    text: 'Well It looks like that. Then who is the first one to write this? '

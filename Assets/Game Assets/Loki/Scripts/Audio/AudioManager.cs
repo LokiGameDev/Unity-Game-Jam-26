@@ -70,6 +70,11 @@ public sealed class AudioManager : MonoBehaviour
         PlayMusic(audioID, defaultMusicFadeDuration);
     }
 
+    public void PlayMusic(AudioID audioID)
+    {
+        PlayMusic(audioID.ToString(), defaultMusicFadeDuration);
+    }
+
     public void PlayMusic(string audioID, float fadeDuration)
     {
         AudioEntry entry = GetEntry(audioID, AudioCategory.Music);
@@ -94,27 +99,26 @@ public sealed class AudioManager : MonoBehaviour
 
     // -------------------- SFX --------------------
 
-    public void PlaySFX(string audioID)
+    public void PlaySFX(AudioID audioID)
     {
         PlaySFX(audioID, Vector3.zero, false);
     }
-
-    public void PlaySFXAt(string audioID, Vector3 worldPosition)
+    public void PlaySFXAt(AudioID audioID, Vector3 worldPosition)
     {
         PlaySFX(audioID, worldPosition, true);
     }
 
-    private void PlaySFX(string audioID, Vector3 position, bool worldPosition)
+    private void PlaySFX(AudioID audioID, Vector3 position, bool worldPosition)
     {
-        AudioEntry entry = GetEntry(audioID, AudioCategory.SFX);
+        AudioEntry entry = GetEntry(audioID.ToString(), AudioCategory.SFX);
         if (entry != null)
             sfxController.Play(entry, position, worldPosition);
     }
 
     // For looping sounds, keep the returned AudioSource and call Stop() when finished.
-    public AudioSource PlayLoopSFX(string audioID)
+    public AudioSource PlayLoopSFX(AudioID audioID)
     {
-        AudioEntry entry = GetEntry(audioID, AudioCategory.SFX);
+        AudioEntry entry = GetEntry(audioID.ToString(), AudioCategory.SFX);
         if (entry == null)
             return null;
 

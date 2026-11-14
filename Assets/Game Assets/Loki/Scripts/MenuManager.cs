@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    private void Start()
+    {
+        AudioManager.Instance.PlayMusic(AudioID.BGM);
+    }
     public void StartGame()
     {
         Cursor.visible = true;
